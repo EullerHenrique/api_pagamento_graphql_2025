@@ -1,0 +1,101 @@
+{
+	"info": {
+		"_postman_id": "e88be4e6-f05f-47ba-864f-4a0ed6f8e88e",
+		"name": "api_pagamento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16525098"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/transacao/v1/pagamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n   \"cartao\": \"4444********1234\",\r\n   \"descricao\": {\r\n      \"valor\": \"500.50\",\r\n      \"dataHora\": \"01/02/2024 01:10:20\",\r\n      \"estabelecimento\": \"Euller Henrique Bandeira Oliveira\"\r\n    },\r\n    \"formaPagamento\":{\r\n        \"tipo\":\"AVISTA\",\r\n        \"parcelas\": \"1\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/transacao/v1/pagar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacao",
+						"v1",
+						"pagar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/transacao/v1/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/transacao/v1/buscar/10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacao",
+						"v1",
+						"buscar",
+						"10"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/transacao/v1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/transacao/v1/listar",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacao",
+						"v1",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/transacao/v1/estorno/1",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/transacao/v1/estornar/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"transacao",
+						"v1",
+						"estornar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

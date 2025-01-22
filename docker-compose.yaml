@@ -1,0 +1,40 @@
+version: "3.8"
+services:
+  postgresql:
+    image: postgres:latest
+    container_name: postgresql
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=db
+      - POSTGRES_USER=euller
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "db", "-U", "euller" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    networks:
+      - api_pagamento-network
+  api_pagamento:
+    container_name: api_pagamento
+    image: api_pagamento:2.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgresql:5432/db
+      - SPRING_DATASOURCE_USERNAME=euller
+      - SPRING_DATASOURCE_PASSWORD=12345
+    networks:
+      - api_pagamento-network
+networks:
+  api_pagamento-network:
+    driver: bridge

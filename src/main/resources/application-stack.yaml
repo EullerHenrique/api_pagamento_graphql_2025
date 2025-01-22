@@ -1,0 +1,22 @@
+server:
+  port:
+    8081
+spring:
+  graphql:
+    graphiql:
+      enabled: true
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+  datasource:
+    driverClassName: org.postgresql.Driver
+  sql:
+    init:
+      platform: postgres
+
+
