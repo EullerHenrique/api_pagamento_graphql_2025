@@ -1,0 +1,4 @@
+type Mutation {
+    pagar(transacao: TransacaoRequestDto): TransacaoResponseDto
+    estornar(id: ID): TransacaoResponseDto
+}

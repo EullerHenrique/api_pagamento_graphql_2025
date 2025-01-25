@@ -1,29 +1,24 @@
 package com.api.pagamento.controller.transacao;
 
-import com.api.pagamento.domain.annotation.http.transacao.TransacaoApiResponses;
-import com.api.pagamento.domain.dto.response.transacao.TransacaoResponseDto;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
 import com.api.pagamento.domain.dto.request.transacao.TransacaoRequestDto;
+import com.api.pagamento.domain.dto.response.transacao.TransacaoResponseDto;
 import com.api.pagamento.domain.exception.http.BadRequestException;
 import com.api.pagamento.domain.exception.http.InternalServerErrorException;
 import com.api.pagamento.domain.exception.http.NotFoundException;
 import com.api.pagamento.service.dto.transacao.TransacaoDtoService;
-import io.swagger.v3.oas.annotations.Operation;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-import static com.api.pagamento.domain.constant.http.type.TypeHttpConstants.APPLICATION_JSON;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
 /**
  * Controlador responsável por expor os endpoints relacionados a transação
  *
  * @author Euller Henrique
  */
-@RestController
-@RequestMapping("/transacao/v1")
+@Controller
 @RequiredArgsConstructor
 public class TransacaoController {
 	private final TransacaoDtoService transacaoDtoService;
@@ -37,20 +32,15 @@ public class TransacaoController {
 	 *     ResponseEntity com a transação encontrada
 	 * @author Euller Henrique
 	 */
-	@Operation(summary = "Busca uma transação pelo id")
-	@TransacaoApiResponses
-	@GetMapping(value = "buscar/{id}", produces = APPLICATION_JSON)
-	public ResponseEntity<Object> buscarTransacao(@PathVariable Long id) {
-
+	@QueryMapping
+	public TransacaoResponseDto buscarTransacaoPeloId(@Argument  Long id) {
 		try {
-			TransacaoResponseDto transacaoDTO = transacaoDtoService.buscarTransacao(id);
-			return ResponseEntity.ok().body(transacaoDTO);
+			return transacaoDtoService.buscarTransacao(id);
 		} catch (NotFoundException | BadRequestException ex) {
 			throw ex;
 		} catch (Exception ex) {
 			throw new InternalServerErrorException(ex);
 		}
-
 	}
 
 	/**
@@ -60,45 +50,36 @@ public class TransacaoController {
 	 *     ResponseEntity com todas as transações encontradas
 	 * @author Euller Henrique
 	 */
-	@Operation(summary = "Busca todas as transações")
-	@TransacaoApiResponses
-	@GetMapping(value = "/listar", produces = APPLICATION_JSON)
-	public ResponseEntity<Object> listarTransacoes() {
-
+	@QueryMapping
+	public List<TransacaoResponseDto> listarTransacoes() {
 		try {
-			List<TransacaoResponseDto> transacaoDTOS = transacaoDtoService.listarTransacoes();
-			return ResponseEntity.ok().body(transacaoDTOS);
+			return transacaoDtoService.listarTransacoes();
 		} catch (NotFoundException | BadRequestException ex) {
 			throw ex;
 		} catch (Exception ex) {
 			throw new InternalServerErrorException(ex);
 		}
-
 	}
+
 
 	/**
 	 * Realiza um pagamento
 	 *
-	 * @param request
+	 * @param transacao
 	 * 		Objeto que contém os dados da transação
 	 * @return ResponseEntity<Object>
 	 *     	ResponseEntity com a transação realizada
 	 * @author Euller Henrique
 	 */
-	@Operation(summary = "Realiza um pagamento")
-	@TransacaoApiResponses
-	@PostMapping(value = "/pagar", produces = APPLICATION_JSON, consumes = APPLICATION_JSON)
-	public ResponseEntity<Object> pagar(@RequestBody @Valid TransacaoRequestDto request) {
-
+	@MutationMapping
+	public TransacaoResponseDto pagar(@Argument TransacaoRequestDto transacao) {
 		try {
-			TransacaoResponseDto transacaoDTO = transacaoDtoService.pagar(request);
-			return ResponseEntity.ok().body(transacaoDTO);
+			return transacaoDtoService.pagar(transacao);
 		} catch (NotFoundException | BadRequestException ex) {
 			throw ex;
 		} catch (Exception ex) {
 			throw new InternalServerErrorException(ex);
 		}
-
 	}
 
 	/**
@@ -110,20 +91,15 @@ public class TransacaoController {
 	 *     ResponseEntity com a transação estornada
 	 * @author Euller Henrique
 	 */
-	@Operation(summary = "Realiza um estorno")
-	@TransacaoApiResponses
-	@PutMapping(value = "/estornar/{id}", produces = APPLICATION_JSON)
-	public ResponseEntity<Object> estornar(@PathVariable Long id) {
-
+	@MutationMapping
+	public TransacaoResponseDto estornar(@Argument Long id) {
 		try {
-			TransacaoResponseDto transacaoDto = transacaoDtoService.estornar(id);
-			return ResponseEntity.ok().body(transacaoDto);
+			return transacaoDtoService.estornar(id);
 		} catch (NotFoundException | BadRequestException ex) {
 			throw ex;
 		} catch (Exception ex) {
 			throw new InternalServerErrorException(ex);
 		}
-
 	}
 
 }

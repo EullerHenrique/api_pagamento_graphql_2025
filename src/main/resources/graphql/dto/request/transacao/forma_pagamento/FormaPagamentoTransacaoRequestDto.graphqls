@@ -1,0 +1,4 @@
+input FormaPagamentoTransacaoRequestDto {
+    tipo: TipoPagamentoTransacaoEnum
+    parcelas: Int
+}

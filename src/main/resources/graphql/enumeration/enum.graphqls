@@ -1,0 +1,11 @@
+enum TipoPagamentoTransacaoEnum {
+    AVISTA
+    PARCELADO_LOJA
+    PARCELADO_EMISSOR
+}
+
+enum StatusTransacaoEnum {
+    AUTORIZADO
+    NEGADO
+    CANCELADO
+}

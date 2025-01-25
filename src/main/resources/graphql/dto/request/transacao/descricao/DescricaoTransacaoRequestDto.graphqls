@@ -1,0 +1,5 @@
+input DescricaoTransacaoRequestDto {
+    valor: Float
+    dataHora: String
+    estabelecimento: String
+}

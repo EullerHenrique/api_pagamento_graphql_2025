@@ -1,0 +1,4 @@
+type Query {
+    buscarTransacaoPeloId(id: ID): TransacaoResponseDto
+    listarTransacoes: [TransacaoResponseDto]
+}

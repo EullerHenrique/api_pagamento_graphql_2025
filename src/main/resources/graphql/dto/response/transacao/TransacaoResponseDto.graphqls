@@ -1,0 +1,6 @@
+type TransacaoResponseDto{
+    id: String
+    cartao: String
+    descricao: DescricaoTransacaoResponseDto
+    formaPagamento: FormaPagamentoTransacaoResponseDto
+}

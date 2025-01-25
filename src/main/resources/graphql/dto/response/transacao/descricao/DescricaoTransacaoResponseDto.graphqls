@@ -1,0 +1,8 @@
+type DescricaoTransacaoResponseDto {
+    valor: Float
+    dataHora: String
+    estabelecimento: String
+    nsu: String
+    codigoAutorizacao: String
+    status: StatusTransacaoEnum
+}
