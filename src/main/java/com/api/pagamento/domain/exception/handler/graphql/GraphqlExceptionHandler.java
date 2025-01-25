@@ -1,4 +1,4 @@
-package com.api.pagamento.domain.exception.handler.http.graphql;
+package com.api.pagamento.domain.exception.handler.graphql;
 
 import com.api.pagamento.domain.exception.handler.util.graphql.GraphqlExceptionUtil;
 import graphql.GraphQLError;
