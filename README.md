@@ -1,5 +1,24 @@
 # Api De Pagamento
 
+## Conceitos
+
+### GraphQl
+
+- GraphQL é uma linguagem de consulta para APIs que permite aos clientes solicitarem exatamente os dados que precisam, em uma única requisição. 
+Ao invés de fazer múltiplas chamadas a diferentes endpoints (como em REST), o GraphQL usa um esquema para definir a estrutura dos dados disponíveis e 
+os clientes podem criar consultas personalizadas.
+
+- Principais vantagens:
+
+  - Flexibilidade: Os clientes controlam a forma como os dados são retornados.
+  - Eficiência: Evita o over-fetching (receber dados extras) ou under-fetching (não receber dados suficientes).
+  - Tipo seguro: O esquema GraphQL define os tipos de dados, garantindo a consistência.
+  - Documentação intuitiva: O esquema serve como uma documentação interativa da API.
+  - Evolutivo: O esquema pode ser modificado sem quebrar as consultas existentes.
+
+- Em resumo, GraphQL oferece uma maneira mais eficiente e flexível de interagir com APIs, especialmente em aplicações 
+complexas com requisitos de dados dinâmicos.
+
 ## Tecnologias Utilizadas
 
 - Java 17
