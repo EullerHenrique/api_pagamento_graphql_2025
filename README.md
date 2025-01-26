@@ -299,7 +299,7 @@ mutation($transacao: TransacaoRequestDto){
 - Request:
 ```
 mutation {
-  estornar(id: "34") {
+  estornar(id: "1") {
     id
     formaPagamento {
       parcelas
