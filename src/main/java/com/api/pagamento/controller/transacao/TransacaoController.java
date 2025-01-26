@@ -1,6 +1,8 @@
 package com.api.pagamento.controller.transacao;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import com.api.pagamento.domain.dto.request.transacao.TransacaoRequestDto;
 import com.api.pagamento.domain.dto.response.transacao.TransacaoResponseDto;
@@ -72,7 +74,7 @@ public class TransacaoController {
 	 * @author Euller Henrique
 	 */
 	@MutationMapping
-	public TransacaoResponseDto pagar(@Argument TransacaoRequestDto transacao) {
+	public TransacaoResponseDto pagar(@Valid @Argument TransacaoRequestDto transacao) {
 		try {
 			return transacaoDtoService.pagar(transacao);
 		} catch (NotFoundException | BadRequestException ex) {

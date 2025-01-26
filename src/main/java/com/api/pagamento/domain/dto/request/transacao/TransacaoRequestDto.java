@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static com.api.pagamento.domain.constant.divider.DividerConstants.ESPACO;
 import static com.api.pagamento.domain.constant.http.message.error.word.WordErrorConstants.*;
 
 /**
@@ -22,7 +23,7 @@ import static com.api.pagamento.domain.constant.http.message.error.word.WordErro
 public class TransacaoRequestDto {
 
 	@NotBlank(message = EH_OBRIGATORIO)
-	@Size(min = 16, max = 16, message = DEVE_TER + 16 + CARACTERES)
+	@Size(min = 16, max = 16, message = DEVE_TER + ESPACO + "16" + ESPACO + CARACTERES)
 	private String cartao;
 
 	@Valid
