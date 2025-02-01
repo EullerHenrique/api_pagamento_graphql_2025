@@ -1,6 +1,6 @@
 # Api De Pagamento
 
-## Conceitos
+## Conceito
 
 ### GraphQl
 
